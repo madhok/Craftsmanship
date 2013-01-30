@@ -25,7 +25,6 @@ void SelectionSort(int* unsortedArray, int arrlength)
 }
 
 
-
 int main()
 {
     
