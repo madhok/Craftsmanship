@@ -59,7 +59,7 @@ void Sorting::selectionSort(int* unsortedArray, int arrlength)
     
 }
 
-/*void Sorting::selectionSort(int* unsortedArray, int arrlength)
+void Sorting::insertionSort(int* unsortedArray, int arrlength)
 {
     if(arrlength == 0 || arrlength == 1)
     {
@@ -76,9 +76,9 @@ void Sorting::selectionSort(int* unsortedArray, int arrlength)
         }
    }
    //Testing
-   Test(unsortedArray,arrlength, "Selection Sort");
+   Test(unsortedArray,arrlength, "Insertion Sort");
 }
-*/
+
 void Sorting::bubbleSort(int *unsortedArray, int arrlength)
 {
     if(arrlength == 0 || arrlength == 1)
@@ -97,11 +97,4 @@ void Sorting::bubbleSort(int *unsortedArray, int arrlength)
     }
     //Testing
    Test(unsortedArray,arrlength, "Bubble Sort");
-}
-
-void Sorting::insertionSort(int *unsortedArray, int arrlength)
-{
-    
-    //Testing
-    Test(unsortedArray,arrlength, "Insertion Sort");
 }
