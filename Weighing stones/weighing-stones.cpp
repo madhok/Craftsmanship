@@ -4,39 +4,34 @@ using namespace std;
 
 bool test(vector<int> sample, int weight);
 
-vector<int> getNumbers(int maxweight)
+vector<int> getStoneWeights(int nMaxWeight)
 {
-	vector<int> result;
-	if (maxweight <= 0)
+	vector<int> vWeights;
+	if (nMaxWeight <= 0)
 	{
-		return result;
+		return vWeights;
 	}
-	int nSumofNumbersPresent;
-	int count = 0;
+	int nSumOfWeightsPresent = 0;
 	
-	nSumofNumbersPresent = 0;
-	
-	for(int nNumberneeded = 1; nNumberneeded <= maxweight; nNumberneeded++)
+	for(int nWeight = 1; nWeight <= nMaxWeight; nWeight++)
 	{
-	if(nNumberneeded > nSumofNumbersPresent)
+	if(nWeight > nSumOfWeightsPresent)
 		{
-			count++;
-			result.resize(count);
-			result.at(count - 1) = nNumberneeded + nSumofNumbersPresent;
-			nSumofNumbersPresent += result.at(count -1);			
+			vWeights.push_back(nWeight + nSumOfWeightsPresent);
+			nSumOfWeightsPresent += vWeights.at(vWeights.size() -1); // previous weight in the list			
 		}
 	}
-	return result;	
+	return vWeights;	
 }
 
 int main()
 {
 	vector<int> sample;
 	int weight;
-	cout << "whats your max weight" << endl;
+	cout << "whats the weight of the stone?" << endl;
 	cin >> weight;
-	sample = getNumbers(weight);
-	cout << "The numbers are " << endl;
+	sample = getStoneWeights(weight);
+	cout << "The smaller stone weights are " << endl;
 	if(sample.empty())
 	{
 		cout << "Empty array" << endl;

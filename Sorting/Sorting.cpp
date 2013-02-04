@@ -9,15 +9,13 @@ void Sorting::swap(int &a, int &b)
     b = temp;
 }
 
-void Sorting::printError(string sortingMethod, int *array , int length)
+void Sorting::printArray(int *array , int length)
 {
-    cout << "********" << endl << endl;
-    cout << sortingMethod << "- Test Failed" << endl;
     for(int i = 0; i< length; i++)
     {
-        cout << array[i] << endl;
+        cout << array[i] << "\t";
     }
-    cout << "********" << endl << endl;
+    cout << endl;
 }
 
 void Sorting::Test(int *SortedArray, int arrlength, string sortingMethod)
@@ -26,7 +24,9 @@ void Sorting::Test(int *SortedArray, int arrlength, string sortingMethod)
    {
         if(SortedArray[i] > SortedArray[i+1])
         {
-            printError(sortingMethod, SortedArray, arrlength);            
+            cout << sortingMethod << " - Failed";
+            printArray(SortedArray, arrlength); 
+            break;                       
         }
    } 
 }
@@ -64,16 +64,18 @@ void Sorting::insertionSort(int* unsortedArray, int arrlength)
     if(arrlength == 0 || arrlength == 1)
     {
         return;
-    }    
+    }
    for(int i = 1; i < arrlength; i++)
    {
         if(unsortedArray[i] < unsortedArray[i-1])
         {
             for(int j = i; unsortedArray[j] <= unsortedArray[j-1] && j > 0; j--)
             {
-                swap(unsortedArray[j], unsortedArray[j-1]);                  
-          }
+                swap(unsortedArray[j], unsortedArray[j-1]);
+            }
         }
+       // cout<< "After Pass" << i << endl;
+       // printArray(unsortedArray,arrlength);        
    }
    //Testing
    Test(unsortedArray,arrlength, "Insertion Sort");
@@ -97,4 +99,9 @@ void Sorting::bubbleSort(int *unsortedArray, int arrlength)
     }
     //Testing
    Test(unsortedArray,arrlength, "Bubble Sort");
+}
+
+void Sorting::shellSort(int *unsortedArray, int arrlength)
+{
+    
 }

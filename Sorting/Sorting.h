@@ -6,7 +6,7 @@ class Sorting
 {
 private:
 void swap(int &a, int &b);
-void printError(string sortingMethod, int *array , int length);
+void printArray(int *array , int length);
 void Test(int *SortedArray, int arrlength, string sortingMethod);
 
 public:

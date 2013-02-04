@@ -17,11 +17,11 @@ int main()
     
     Sorting objSort;
     //Selection Sort    
-    objSort.selectionSort(array, length);  
+  //  objSort.selectionSort(array, length);  
     //Bubble Sort
-    objSort.bubbleSort(array, length);
+  //  objSort.bubbleSort(array, length);
     //Insertion Sort
-    
+    objSort.insertionSort(array, length);
     delete[] array;
     return 0;
 }
