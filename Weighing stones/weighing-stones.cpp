@@ -18,8 +18,12 @@ vector<int> getStoneWeights(int nMaxWeight)
 	if(nWeight > nSumOfWeightsPresent)
 		{
 			vWeights.push_back(nWeight + nSumOfWeightsPresent);
-			nSumOfWeightsPresent += vWeights.at(vWeights.size() -1); // previous weight in the list			
+			nSumOfWeightsPresent += vWeights.at(vWeights.size() -1); // add the new weight		
 		}
+	}
+	if(nMaxWeight != nSumOfWeightsPresent)
+	{
+	    vWeights[vWeights.size() -1] -= nSumOfWeightsPresent - nMaxWeight;
 	}
 	return vWeights;	
 }
@@ -40,7 +44,7 @@ int main()
 	{
 		cout << sample.at(i) << endl;
 	}
-	
+}	
 	// testing	
 /*	cout << "tests :";
 	if(test(sample, weight) == 1)
@@ -52,7 +56,7 @@ int main()
 		cout << "failed" << endl;
 	}
 */	
-}
+
 
 bool test(vector<int> sample, int weight)
 {
