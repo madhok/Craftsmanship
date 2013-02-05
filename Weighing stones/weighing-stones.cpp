@@ -15,10 +15,11 @@ vector<int> getStoneWeights(int nMaxWeight)
 	
 	for(int nWeight = 1; nWeight <= nMaxWeight; nWeight++)
 	{
-	if(nWeight > nSumOfWeightsPresent)
+	    if(nWeight > nSumOfWeightsPresent)
 		{
-			vWeights.push_back(nWeight + nSumOfWeightsPresent);
-			nSumOfWeightsPresent += vWeights.at(vWeights.size() -1); // add the new weight		
+			int nFoundWeight = nWeight + nSumOfWeightsPresent;
+			vWeights.push_back(nFoundWeight);
+			nSumOfWeightsPresent += nFoundWeight; // add the new weight		
 		}
 	}
 	if(nMaxWeight != nSumOfWeightsPresent)
@@ -60,7 +61,7 @@ int main()
 
 bool test(vector<int> sample, int weight)
 {
-int multiplier[3] = {1,-1,0,};
+int multiplier[3] = {1,-1,0};
 bool ret = false;
 int resultval;
 	for(int i = 1; i <= weight; i++)
