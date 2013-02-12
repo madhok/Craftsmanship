@@ -1,4 +1,4 @@
-class LeetCode {
+class Merge {
 public:
 
 /* Question Merge Sorted Array
@@ -79,4 +79,52 @@ of elements initialized in A and B are m and n respectively*/
         }
         return temp;
     }  
+    
+    double findMedianSortedArrays(int A[], int m, int B[], int n) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+     int mA,mB;
+     
+     if(m == 0)
+        return getMedian(B,n);
+     if(n == 0)    
+        return getMedian(A,m);
+        
+     mA = getMedian(A,m);
+     mB = getMedian(B,n);
+     
+     if(mA > mB)
+     {
+         findMedianSortedArrays(getArray(A, 0, m/2 + 1), m/2 + 1 ,getArray(B, n/2 - 1, n), n/2 + 1);
+     }
+     else if(mB > mA)
+     {
+         findMedianSortedArrays(getArray(A, m/2 - 1, m), m/2 + 1,  getArray(B, 0, n/2 + 1), n/2 + 1);
+     }
+     return mA;
+     
+    }
+    
+    double getMedian(int Array[], int n)
+    {
+        if(n == 1)
+            return Array[n-1];            
+        else if(n%2 == 1)
+            return Array[(n-1)/2];
+        else
+            return (Array[(n-1)/2] + Array[(n+1)/2])/2;            
+    }
+    
+    int* getArray(int A[], int startval, int endval)
+    {
+        int length = endval - startval;
+        int temp[endval - startval];
+        
+        for(int i = 0; i <= length; i++)
+        {
+            temp[i] = A[startval];
+            startval++;
+        }
+        return temp;
+    }
 };
