@@ -101,7 +101,105 @@ void Sorting::bubbleSort(int *unsortedArray, int arrlength)
    Test(unsortedArray,arrlength, "Bubble Sort");
 }
 
+void Sorting::quickSort(int* unsortedArray, int left, int right) 
+{
+      int i = left, j = right;
+      int tmp;
+      int pivot = unsortedArray[(left + right) / 2];
+ 
+      /* partition */
+      while (i <= j) {
+            while (unsortedArray[i] < pivot)
+                  i++;
+            while (unsortedArray[j] > pivot)
+                  j--;
+            if (i <= j) 
+            {
+                  swap(unsortedArray[i],unsortedArray[j]);
+                  i++;
+                  j--;
+            }
+      };
+ 
+      /* recursion */
+      if (left < j)
+            quickSort(unsortedArray, left, j);
+      if (i < right)
+            quickSort(unsortedArray, i, right);
+    
+   Test(unsortedArray,right+1, "Quick Sort");
+}
+
 void Sorting::shellSort(int *unsortedArray, int arrlength)
 {
-    
+    int nDistance = arrlength;
+    bool bChanged = false;
+    while(bChanged||nDistance > 1)
+    {
+        bChanged= false;
+        nDistance = (nDistance +1)/2;
+        for(int i = 0; i < (arrlength - nDistance); i++)
+        {
+            if(unsortedArray[i] > unsortedArray[i + nDistance])
+            {
+                swap(unsortedArray[i], unsortedArray[i + nDistance]);
+                bChanged = true;
+            }            
+        }
+     }  
+   //printArray(unsortedArray,arrlength); 
+   Test(unsortedArray,arrlength, "Bubble Sort");
+}
+
+void Sorting::mergeSort(int *unsortedArray, int start, int end)
+{
+    callMergeSort(unsortedArray,start,end);
+    Test(unsortedArray,end+1, "Merge Sort");
+}
+
+void Sorting::callMergeSort(int *unsortedArray, int start, int end)
+{
+    if(start < end)
+    {
+        int mid = (start + end)/2;
+        callMergeSort(unsortedArray, start,mid);
+        callMergeSort(unsortedArray,mid+1, end);
+        merge(unsortedArray, start, end);
+    }   
+         
+}
+
+void Sorting::merge(int *unsortedArray, int start, int end)
+{
+    int sortedArray[end-start + 1];
+    int istart = start;
+    int mid = (start + end)/2;
+    int iend = mid + 1;
+    int index = 0;
+            
+    while(istart <= mid && iend <= end)
+    {
+        if(unsortedArray[istart] > unsortedArray[iend])
+        {
+            sortedArray[index++] = unsortedArray[iend++];
+            
+        } 
+        else
+        {
+            sortedArray[index++] = unsortedArray[istart++];
+            
+        }
+    }
+    while(istart <= mid)
+    {
+        sortedArray[index++] = unsortedArray[istart++];
+    }
+    while(iend <= end)
+    {
+        sortedArray[index++] = unsortedArray[iend++];
+    }   
+    for(int i = start, j = 0; i <= end; i++)
+    {
+        unsortedArray[i] = sortedArray[j++];
+    }
 }
