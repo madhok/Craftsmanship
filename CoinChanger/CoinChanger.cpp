@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <math.h>
 
 using namespace std;
 
@@ -17,7 +18,8 @@ vector<int> CoinChanger::DispenseChange(double Amount, vector<int>& vDenominatio
     sort(vDenominations.begin(), vDenominations.end());
     reverse(vDenominations.begin(), vDenominations.end());
 
-    int nRemainingamount = Amount * 100; //Convert to Cents
+    int nRemainingamount = round(Amount * 100); //Convert to Cents
+   
     for(int i = 0; i < vDenominations.size(); i++)
     {
        nDispensedCoins.push_back(nRemainingamount / vDenominations.at(i));
@@ -25,7 +27,7 @@ vector<int> CoinChanger::DispenseChange(double Amount, vector<int>& vDenominatio
     }
    
     //TEST
-    if(!test(nDispensedCoins,(Amount * 100),vDenominations))
+    if(!test(nDispensedCoins,round(Amount * 100),vDenominations))
         cout << "*****TEST FAILED*****" << endl;
     else
         cout << endl << "*****TEST PASSED*****" << endl;
@@ -35,24 +37,28 @@ vector<int> CoinChanger::DispenseChange(double Amount, vector<int>& vDenominatio
 bool CoinChanger::test(vector<int> nMinimumNumberOfCoins, int nAmountDispensed, vector<int> vDenominations)
 {   
 
+    sort(vDenominations.begin(), vDenominations.end());
+    reverse(vDenominations.begin(), vDenominations.end()); //Descending order
     //Check if its the minimum number of coins
-     for(int i = 1; i < vDenominations.size(); i++)
+     for(int i = 1; i < vDenominations.size() - 1; i++)
      {
-        if(nMinimumNumberOfCoins.at(i) >= vDenominations.at(i-1)/vDenominations.at(i))
+        if(nMinimumNumberOfCoins.at(i) * vDenominations.at(i)  >= vDenominations.at(i-1))
         {
-            return false;
+            return false;            
         }
+        
      }
     
  //check if it sums up to the Amount to be Dispensed
      int nSum = 0;     
-     for(int i = 0; i< vDenominations.size(); i++)
+     for(int i = 0 ; i < vDenominations.size(); i++)
      {
         nSum+= vDenominations.at(i) * nMinimumNumberOfCoins.at(i);
+        
      }             
      if (nSum != nAmountDispensed)  
      {
-        return false;
+      return false;
      }
      return true;
 }
