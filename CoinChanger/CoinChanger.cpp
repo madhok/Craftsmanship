@@ -6,56 +6,167 @@ using namespace std;
 
 class CoinChanger
 {
+    private:
+        int nAmountDispensed;
+        vector<int> vDenominations;
+        bool bSpecial;    
+    
+        void sortDescending(vector<int>& _vDenominations);
+        void setAmount(double _nAmountDispensed);
+        bool test(vector<int> vMinimumNumberOfCoins,bool bSpecial);
+        vector<int> GetCoinsForSpecialCase(vector< pair <int,int> >vSpecial);
+    
     public:
-        vector<int> DispenseChange(double Amount, vector<int>& vDenomination);
-        bool test(vector<int> nMinimumNumberOfCoins, int nAmountDispensed, vector<int> vDenominations);
+        void setDenominationsInDescending(vector<int>& _vDenominations);    
+        vector<int> DispenseChange(double Amount);
+       
 };
 
-vector<int> CoinChanger::DispenseChange(double Amount, vector<int>& vDenominations )
+void CoinChanger::setDenominationsInDescending(vector<int>& _vDenominations)
 {
-    vector<int>nDispensedCoins;
-    //Sort the denominations in descending order
-    sort(vDenominations.begin(), vDenominations.end());
-    reverse(vDenominations.begin(), vDenominations.end());
+    sortDescending(_vDenominations);
+    vDenominations = _vDenominations;       
+}
 
-    int nRemainingamount = round(Amount * 100); //Convert to Cents
-   
+void CoinChanger::sortDescending(vector<int>& _vDenominations)
+{
+    //Sort the denominations in descending order
+    sort(_vDenominations.begin(), _vDenominations.end());
+    reverse(_vDenominations.begin(), _vDenominations.end());
+}
+
+void CoinChanger::setAmount(double _nAmountDispensed)
+{
+    nAmountDispensed = round(_nAmountDispensed * 100);//Convert to Cents
+}
+
+vector<int> CoinChanger::DispenseChange(double Amount)
+{
+    vector<int>vDispensedCoins;
+      
+    setAmount(Amount);        
+    int nRemainingAmount = nAmountDispensed; 
+    
     for(int i = 0; i < vDenominations.size(); i++)
     {
-       nDispensedCoins.push_back(nRemainingamount / vDenominations.at(i));
-       nRemainingamount = nRemainingamount % vDenominations.at(i);     
+       vDispensedCoins.push_back(nRemainingAmount / vDenominations.at(i));
+       nRemainingAmount = nRemainingAmount % vDenominations.at(i);             
     }
    
+    //Check for special case
+    bool bSpecial = false;
+    vector< pair <int,int> > vSpecial;
+    for(int i = 0; i < vDenominations.size() - 1; i++)
+    {
+       if(vDenominations[i] < 2 * vDenominations[i+1])
+        {
+            bSpecial = true;
+            vSpecial.push_back(make_pair(vDenominations[i+1],vDenominations[i]));
+        }
+    } 
+    if(bSpecial)
+    {
+       vDispensedCoins = GetCoinsForSpecialCase(vSpecial); 
+    }  
+    
     //TEST
-    if(!test(nDispensedCoins,round(Amount * 100),vDenominations))
+    if(!test(vDispensedCoins,bSpecial))
         cout << "*****TEST FAILED*****" << endl;
     else
         cout << endl << "*****TEST PASSED*****" << endl;
-    return nDispensedCoins;
+        
+    return vDispensedCoins;
 }
 
-bool CoinChanger::test(vector<int> nMinimumNumberOfCoins, int nAmountDispensed, vector<int> vDenominations)
-{   
-
-    sort(vDenominations.begin(), vDenominations.end());
-    reverse(vDenominations.begin(), vDenominations.end()); //Descending order
-    //Check if its the minimum number of coins
-     for(int i = 1; i < vDenominations.size() - 1; i++)
-     {
-        if(nMinimumNumberOfCoins.at(i) * vDenominations.at(i)  >= vDenominations.at(i-1))
-        {
-            return false;            
-        }
-        
-     }
+vector<int> CoinChanger::GetCoinsForSpecialCase(vector< pair <int,int> >vSpecial)
+{ 
+    vector<int>vDispensedCoins;
+    int nRemainingAmount = nAmountDispensed;
     
+    vDispensedCoins.resize(vDenominations.size());
+        
+    for(int j = 0; j < vSpecial.size(); j++)
+    {   
+        if(nRemainingAmount == 0)
+            break; 
+        for(int i = 0; i < vDenominations.size(); i++)
+        {         
+            if(vDenominations[i] == vSpecial[j].second)
+            {
+                while(nRemainingAmount >= 2 * vDenominations[i])
+                {
+                    vDispensedCoins[i]++;
+                    nRemainingAmount -= vDenominations[i];
+                }
+                int nAmount = nRemainingAmount;
+                int nCoinsRequiredForSecondInPair = 0;
+                int nCoinsRequiredFirstInPair = 0;
+                int k = i;
+                while(nRemainingAmount > 0)
+                {
+                    nCoinsRequiredForSecondInPair += nRemainingAmount/vDenominations.at(k);
+                    nRemainingAmount = nRemainingAmount % vDenominations.at(k);
+                    k++;                   
+                }
+                nRemainingAmount = nAmount;
+                k = i+1;
+                while(nRemainingAmount > 0)
+                {
+                    nCoinsRequiredFirstInPair += nRemainingAmount/vDenominations.at(k);
+                    nRemainingAmount = nRemainingAmount % vDenominations.at(k);
+                    k++;                    
+                }
+                nRemainingAmount = nAmount;
+                if(nCoinsRequiredFirstInPair > nCoinsRequiredForSecondInPair)
+                {
+                  while(nRemainingAmount > 0)
+                  {
+                    vDispensedCoins[i]+= nRemainingAmount/ vDenominations.at(i);  
+                    nRemainingAmount = (nRemainingAmount % vDenominations.at(i));
+                    i++;
+                  }
+                }
+                else
+                {
+                    while(nRemainingAmount > 0)
+                    {
+                        vDispensedCoins[i+1]+= (nRemainingAmount)/ vDenominations.at(i+1); 
+                        nRemainingAmount = (nRemainingAmount % vDenominations.at(i+1));
+                        i++;
+                    }
+                }                               
+            } 
+            else
+            {
+                vDispensedCoins[i] = (nRemainingAmount / vDenominations.at(i));
+                nRemainingAmount = nRemainingAmount % vDenominations.at(i);                
+            }       
+        }
+    }
+    return vDispensedCoins;
+}
+
+bool CoinChanger::test(vector<int> vMinimumNumberOfCoins,bool bSpecial)
+{   
+  if(!bSpecial)
+    {
+        //Check if its the minimum number of coins
+        for(int i = 1; i < vDenominations.size() - 1; i++)
+        {
+            if(vMinimumNumberOfCoins.at(i) * vDenominations.at(i)  >= vDenominations.at(i-1))
+            {
+                return false;            
+            }        
+        }
+     }
+   
  //check if it sums up to the Amount to be Dispensed
-     int nSum = 0;     
+     int nSum = 0; 
      for(int i = 0 ; i < vDenominations.size(); i++)
      {
-        nSum+= vDenominations.at(i) * nMinimumNumberOfCoins.at(i);
-        
-     }             
+        nSum+= vDenominations.at(i) * vMinimumNumberOfCoins.at(i);        
+     }  
+                
      if (nSum != nAmountDispensed)  
      {
       return false;
@@ -83,11 +194,12 @@ int main()
         vDenominations.at(i) = input;
     }
     CoinChanger objCoinChanger;  
-    vector<int>vChange = objCoinChanger.DispenseChange(nAmount, vDenominations);
+    objCoinChanger.setDenominationsInDescending(vDenominations);     
+    vector<int>vChange = objCoinChanger.DispenseChange(nAmount);
     
     while(!vChange.empty())
     {
-        cout << "Number of " << vDenominations.back() << " coins is " << vChange.back() << endl; 
+        cout << "Number of " << vDenominations.back() << " cent coins is " << vChange.back() << endl; 
         vChange.pop_back();
         vDenominations.pop_back();               
     }         
