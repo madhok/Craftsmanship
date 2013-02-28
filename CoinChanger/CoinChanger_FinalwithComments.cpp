@@ -93,7 +93,7 @@ int CoinChanger::GetCoinsforDenomination(int& Amount, int denomination)
 int CoinChanger::TotalCoinsRequired(int CoinPosition,int Amount)
 {
    int CoinsRequired = 0;
-   while(Amount > 0 && CoinPosition < vDenominations.size())
+   while(Amount > 0)
     {
         CoinsRequired += Amount/vDenominations.at(CoinPosition);
         Amount = Amount % vDenominations.at(CoinPosition);
@@ -110,22 +110,25 @@ vector<int> CoinChanger::GetCoinsForSpecialCase(vector< pair <int,int> >vSpecial
     int nRemainingAmount = nAmountDispensed;
     
     vDispensedCoins.resize(vDenominations.size());
+     cout << "vSpecial.size()" << vSpecial.size() << endl;           
     for(int j = 0; j < vSpecial.size(); j++)
     {   
         if(nRemainingAmount == 0)
             break; 
         int smallerCoin = vSpecial[j].first;
         int biggerCoin = vSpecial[j].second;
-        for(int coinPosition = 0; coinPosition < vDenominations.size(); coinPosition++)
+        cout << "smallerCoin" << smallerCoin << endl;    
+        cout << "biggerCoin" << biggerCoin << endl;       
+        for(int i = 0; i < vDenominations.size(); i++)
         {         
-            if(vDenominations[coinPosition] != biggerCoin)
+            if(vDenominations[i] != biggerCoin)
             {
-                vDispensedCoins[coinPosition] = GetCoinsforDenomination(nRemainingAmount,vDenominations[coinPosition]);
+                vDispensedCoins[i] = GetCoinsforDenomination(nRemainingAmount,vDenominations[i]);
             }
             else
             {
-                int biggerCoinPosition = coinPosition;
-                int smallerCoinPosition = coinPosition+1;                
+                int biggerCoinPosition = i;
+                int smallerCoinPosition = i+1;
                 while(nRemainingAmount >= 2 * vDenominations[biggerCoinPosition])
                 {
                     vDispensedCoins[biggerCoinPosition]++;
@@ -134,17 +137,69 @@ vector<int> CoinChanger::GetCoinsForSpecialCase(vector< pair <int,int> >vSpecial
                 if(TotalCoinsRequired(biggerCoinPosition,nRemainingAmount) 
                     >  TotalCoinsRequired(smallerCoinPosition, nRemainingAmount))
                 {
-                    coinPosition = smallerCoinPosition;
-                    //i = i+1;                    
-                }            
+                    i = i+1;                    
+                }
                 while(nRemainingAmount > 0)
                 {
-                    vDispensedCoins[coinPosition]+= GetCoinsforDenomination(nRemainingAmount,vDenominations[coinPosition]);
-                    coinPosition++;
+                    vDispensedCoins[i]+= GetCoinsforDenomination(nRemainingAmount,vDenominations[i]);
+                    i++;
                 }   
             }
         }
-    }      
+    }  
+            
+           /* if(vDenominations[i] == biggerCoin)
+            {
+                while(nRemainingAmount >= 2 * vDenominations[i])
+                {
+                    vDispensedCoins[i]++;
+                    nRemainingAmount -= vDenominations[i];
+                }
+                int nAmount = nRemainingAmount;
+                int nCoinsRequiredForSecondInPair = 0;
+                int nCoinsRequiredFirstInPair = 0;
+                int k = i;
+                while(nRemainingAmount > 0)
+                {
+                    nCoinsRequiredForSecondInPair += nRemainingAmount/vDenominations.at(k);
+                    nRemainingAmount = nRemainingAmount % vDenominations.at(k);
+                    k++;                   
+                }
+                nRemainingAmount = nAmount;
+                k = i+1;
+                while(nRemainingAmount > 0)
+                {
+                    nCoinsRequiredFirstInPair += nRemainingAmount/vDenominations.at(k);
+                    nRemainingAmount = nRemainingAmount % vDenominations.at(k);
+                    k++;                    
+                }
+                nRemainingAmount = nAmount;
+                if(nCoinsRequiredFirstInPair > nCoinsRequiredForSecondInPair)
+                {
+                  while(nRemainingAmount > 0)
+                  {
+                    vDispensedCoins[i]+= nRemainingAmount/ vDenominations.at(i);  
+                    nRemainingAmount = (nRemainingAmount % vDenominations.at(i));
+                    i++;
+                  }
+                }
+                else
+                {
+                    while(nRemainingAmount > 0)
+                    {
+                        vDispensedCoins[i+1]+= (nRemainingAmount)/ vDenominations.at(i+1); 
+                        nRemainingAmount = (nRemainingAmount % vDenominations.at(i+1));
+                        i++;
+                    }
+                }                               
+            } 
+            else
+            {
+                vDispensedCoins[i] = (nRemainingAmount / vDenominations.at(i));
+                nRemainingAmount = nRemainingAmount % vDenominations.at(i);                
+            }       
+        }
+    }*/
     return vDispensedCoins;
 }
 
