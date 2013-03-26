@@ -7,11 +7,11 @@ using namespace std;
 class CoinChanger
 {
     private:
-        int nAmountDispensed;
+        int AmountToDispense;
         vector<int> vDenominations;
         
         void sortDescending(vector<int>& _vDenominations);
-        void setAmount(double _nAmountDispensed);
+        void setAmount(double _AmountToDispense);
         vector<int> greedyAlgorithm(int nRemainingAmount);
         int GetCoinsforDenomination(int& Amount, int denomination);
         int TotalCoinsRequired(int CoinPosition,int Amount);
@@ -37,9 +37,9 @@ void CoinChanger::sortDescending(vector<int>& _vDenominations)
     reverse(_vDenominations.begin(), _vDenominations.end());
 }
 
-void CoinChanger::setAmount(double _nAmountDispensed)
+void CoinChanger::setAmount(double _AmountToDispense)
 {
-    nAmountDispensed = round(_nAmountDispensed * 100);//Convert to Cents
+    AmountToDispense = round(_AmountToDispense * 100);//Convert to Cents
 }
 
 vector<int> CoinChanger::greedyAlgorithm(int nRemainingAmount)
@@ -70,7 +70,7 @@ vector<int> CoinChanger::DispenseChange(double Amount)
     } 
     
     if(!bSpecialCase)
-        vDispensedCoins = greedyAlgorithm(nAmountDispensed);
+        vDispensedCoins = greedyAlgorithm(AmountToDispense);
     else
         vDispensedCoins = GetCoinsForSpecialCase(vSpecialCoinsPair);
     
@@ -107,7 +107,7 @@ int CoinChanger::TotalCoinsRequired(int CoinPosition,int Amount)
 vector<int> CoinChanger::GetCoinsForSpecialCase(vector< pair <int,int> >vSpecial)
 { 
     vector<int>vDispensedCoins;
-    int nRemainingAmount = nAmountDispensed;
+    int nRemainingAmount = AmountToDispense;
     
     vDispensedCoins.resize(vDenominations.size());
     for(int j = 0; j < vSpecial.size(); j++)
@@ -169,7 +169,7 @@ bool CoinChanger::test(vector<int> vMinimumNumberOfCoins,bool bSpecial)
         nSum+= vDenominations.at(i) * vMinimumNumberOfCoins.at(i);        
      }  
                 
-     if (nSum != nAmountDispensed)  
+     if (nSum != AmountToDispense)  
      {
       return false;
      }
