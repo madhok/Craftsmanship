@@ -33,7 +33,7 @@ bool MarsRover::changeRoverYPosition(int value)
     if(!isObstaclePresent(Rover.x, Rover.y + value))
     {
         Rover.y = Rover.y + value;
-        if(Rover.y > MAX)
+        if(Rover.y >= MAX)
             Rover.y = MIN;
         if(Rover.y < MIN)
             Rover.y = MAX;
@@ -47,7 +47,7 @@ bool MarsRover::changeRoverXPosition(int value)
     if(!isObstaclePresent(Rover.x + value, Rover.y))
     {
         Rover.x = Rover.x + value;
-        if(Rover.x > MAX)
+        if(Rover.x >= MAX)
             Rover.x = MIN;
         if(Rover.x < MIN)
             Rover.x = MAX;

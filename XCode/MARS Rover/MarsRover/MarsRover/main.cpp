@@ -40,13 +40,13 @@ bool checkBoundary()
 {
     MarsRover test;
     vector<char> mycommands;
-    for(int i =0; i <= MAX; i++)
+    for(int i =0; i < MAX; i++)
         mycommands.push_back('f');
     test.setCommands(mycommands);
     if(test.getRoverYPosition() != 0)
         return false;
     mycommands.push_back('r');
-    for(int i =1; i <= MAX; i++)
+    for(int i =1; i < MAX; i++)
         mycommands.push_back('f');
     if(test.getRoverXPosition() != 0)
         return false;
