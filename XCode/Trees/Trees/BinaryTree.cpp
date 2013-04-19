@@ -448,7 +448,22 @@ int BinaryTree::getMedian(int sortedArray[], int length)
     return sortedArray[length/2];
 }
 
-
+bool BinaryTree::IsBST(Node* root)
+{
+    if(root == NULL)
+        return true;
+    
+    if(root->left == NULL && root->right == NULLL)
+        return true;
+    
+    if(root->left !=NULL && root->left->val >= root->val)
+        return false;
+    if(root->right !=NULL && root->right->val <= root->val)
+        return false;
+    
+    return (IsBST(root->left) && IsBST(root->right));
+        
+}
 
 
 

@@ -56,7 +56,6 @@ void Sorting::selectionSort(int* unsortedArray, int arrlength)
     }
     //testing
     Test(unsortedArray,arrlength, "Selection Sort");
-    
 }
 
 void Sorting::insertionSort(int* unsortedArray, int arrlength)

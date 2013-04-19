@@ -7,37 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		771227181700B1770065BCD5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 771227171700B1770065BCD5 /* main.cpp */; };
-		7712271A1700B1780065BCD5 /* MarsRover.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 771227191700B1780065BCD5 /* MarsRover.1 */; };
-		771227251700B1F30065BCD5 /* MarsRover.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 771227231700B1F30065BCD5 /* MarsRover.cpp */; };
-		7794CDD5170AAD1E00895816 /* TestMarsRover.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7794CDD3170AAD1E00895816 /* TestMarsRover.cpp */; };
+		7794CDE3170C77F000895816 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7794CDE2170C77F000895816 /* main.cpp */; };
+		7794CDE5170C77F000895816 /* RangeOverlap.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7794CDE4170C77F000895816 /* RangeOverlap.1 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		771227121700B1770065BCD5 /* CopyFiles */ = {
+		7794CDDD170C77F000895816 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				7712271A1700B1780065BCD5 /* MarsRover.1 in CopyFiles */,
+				7794CDE5170C77F000895816 /* RangeOverlap.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		771227141700B1770065BCD5 /* MarsRover */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MarsRover; sourceTree = BUILT_PRODUCTS_DIR; };
-		771227171700B1770065BCD5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		771227191700B1780065BCD5 /* MarsRover.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = MarsRover.1; sourceTree = "<group>"; };
-		771227231700B1F30065BCD5 /* MarsRover.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MarsRover.cpp; sourceTree = "<group>"; };
-		771227241700B1F30065BCD5 /* MarsRover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarsRover.h; sourceTree = "<group>"; };
-		7794CDD3170AAD1E00895816 /* TestMarsRover.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMarsRover.cpp; sourceTree = "<group>"; };
-		7794CDD4170AAD1E00895816 /* TestMarsRover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMarsRover.h; sourceTree = "<group>"; };
+		7794CDDF170C77F000895816 /* RangeOverlap */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RangeOverlap; sourceTree = BUILT_PRODUCTS_DIR; };
+		7794CDE2170C77F000895816 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		7794CDE4170C77F000895816 /* RangeOverlap.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = RangeOverlap.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		771227111700B1770065BCD5 /* Frameworks */ = {
+		7794CDDC170C77F000895816 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -47,96 +41,90 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7712270B1700B1770065BCD5 = {
+		7794CDD6170C77F000895816 = {
 			isa = PBXGroup;
 			children = (
-				771227161700B1770065BCD5 /* MarsRover */,
-				771227151700B1770065BCD5 /* Products */,
+				7794CDE1170C77F000895816 /* RangeOverlap */,
+				7794CDE0170C77F000895816 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		771227151700B1770065BCD5 /* Products */ = {
+		7794CDE0170C77F000895816 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				771227141700B1770065BCD5 /* MarsRover */,
+				7794CDDF170C77F000895816 /* RangeOverlap */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		771227161700B1770065BCD5 /* MarsRover */ = {
+		7794CDE1170C77F000895816 /* RangeOverlap */ = {
 			isa = PBXGroup;
 			children = (
-				771227241700B1F30065BCD5 /* MarsRover.h */,
-				771227231700B1F30065BCD5 /* MarsRover.cpp */,
-				771227171700B1770065BCD5 /* main.cpp */,
-				771227191700B1780065BCD5 /* MarsRover.1 */,
-				7794CDD3170AAD1E00895816 /* TestMarsRover.cpp */,
-				7794CDD4170AAD1E00895816 /* TestMarsRover.h */,
+				7794CDE2170C77F000895816 /* main.cpp */,
+				7794CDE4170C77F000895816 /* RangeOverlap.1 */,
 			);
-			path = MarsRover;
+			path = RangeOverlap;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		771227131700B1770065BCD5 /* MarsRover */ = {
+		7794CDDE170C77F000895816 /* RangeOverlap */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7712271D1700B1780065BCD5 /* Build configuration list for PBXNativeTarget "MarsRover" */;
+			buildConfigurationList = 7794CDE8170C77F000895816 /* Build configuration list for PBXNativeTarget "RangeOverlap" */;
 			buildPhases = (
-				771227101700B1770065BCD5 /* Sources */,
-				771227111700B1770065BCD5 /* Frameworks */,
-				771227121700B1770065BCD5 /* CopyFiles */,
+				7794CDDB170C77F000895816 /* Sources */,
+				7794CDDC170C77F000895816 /* Frameworks */,
+				7794CDDD170C77F000895816 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = MarsRover;
-			productName = MarsRover;
-			productReference = 771227141700B1770065BCD5 /* MarsRover */;
+			name = RangeOverlap;
+			productName = RangeOverlap;
+			productReference = 7794CDDF170C77F000895816 /* RangeOverlap */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		7712270C1700B1770065BCD5 /* Project object */ = {
+		7794CDD7170C77F000895816 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Madhok Shivaratre";
 			};
-			buildConfigurationList = 7712270F1700B1770065BCD5 /* Build configuration list for PBXProject "MarsRover" */;
+			buildConfigurationList = 7794CDDA170C77F000895816 /* Build configuration list for PBXProject "RangeOverlap" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 7712270B1700B1770065BCD5;
-			productRefGroup = 771227151700B1770065BCD5 /* Products */;
+			mainGroup = 7794CDD6170C77F000895816;
+			productRefGroup = 7794CDE0170C77F000895816 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				771227131700B1770065BCD5 /* MarsRover */,
+				7794CDDE170C77F000895816 /* RangeOverlap */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		771227101700B1770065BCD5 /* Sources */ = {
+		7794CDDB170C77F000895816 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				771227181700B1770065BCD5 /* main.cpp in Sources */,
-				771227251700B1F30065BCD5 /* MarsRover.cpp in Sources */,
-				7794CDD5170AAD1E00895816 /* TestMarsRover.cpp in Sources */,
+				7794CDE3170C77F000895816 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		7712271B1700B1780065BCD5 /* Debug */ = {
+		7794CDE6170C77F000895816 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -169,7 +157,7 @@
 			};
 			name = Debug;
 		};
-		7712271C1700B1780065BCD5 /* Release */ = {
+		7794CDE7170C77F000895816 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -195,14 +183,14 @@
 			};
 			name = Release;
 		};
-		7712271E1700B1780065BCD5 /* Debug */ = {
+		7794CDE9170C77F000895816 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		7712271F1700B1780065BCD5 /* Release */ = {
+		7794CDEA170C77F000895816 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -212,25 +200,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7712270F1700B1770065BCD5 /* Build configuration list for PBXProject "MarsRover" */ = {
+		7794CDDA170C77F000895816 /* Build configuration list for PBXProject "RangeOverlap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7712271B1700B1780065BCD5 /* Debug */,
-				7712271C1700B1780065BCD5 /* Release */,
+				7794CDE6170C77F000895816 /* Debug */,
+				7794CDE7170C77F000895816 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7712271D1700B1780065BCD5 /* Build configuration list for PBXNativeTarget "MarsRover" */ = {
+		7794CDE8170C77F000895816 /* Build configuration list for PBXNativeTarget "RangeOverlap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7712271E1700B1780065BCD5 /* Debug */,
-				7712271F1700B1780065BCD5 /* Release */,
+				7794CDE9170C77F000895816 /* Debug */,
+				7794CDEA170C77F000895816 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 7712270C1700B1770065BCD5 /* Project object */;
+	rootObject = 7794CDD7170C77F000895816 /* Project object */;
 }

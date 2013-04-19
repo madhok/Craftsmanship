@@ -44,7 +44,7 @@ class BinaryTree
     int mindepth(Node* currentNode);
     int getMedian(int sortedArray[],int length);
     Node* createBTree(int sortedArray[],int start, int end);
-
+    
 public:
     
     BinaryTree(int val)
@@ -74,6 +74,7 @@ public:
     void ReversePrinting();    
     bool IsBalanced();
     static void CreateTree(int sortedArray[],int length);
+    bool IsBST(Node* root);
 };
 
 
