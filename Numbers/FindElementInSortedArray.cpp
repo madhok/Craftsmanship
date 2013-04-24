@@ -65,13 +65,13 @@ int findElement(vector<int> rotatedArray,int element, int startIndex, int endInd
 int main()
 {
     vector<int>array;
-    array.push_back(5);
-    array.push_back(6);
-    array.push_back(7);
     array.push_back(8);
     array.push_back(1);
     array.push_back(2);
     array.push_back(3);
     array.push_back(4);
-    findElement(array, 9, 0, array.size()-1);
+    array.push_back(5);
+    array.push_back(6);
+    array.push_back(7);
+    findElement(array, 1, 0, array.size()-1);
 }
