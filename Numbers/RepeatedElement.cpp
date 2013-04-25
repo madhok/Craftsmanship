@@ -59,6 +59,24 @@ bool getRepeatingElementBoyerMoore(int array[], int size, int& repeatedElement)
             count--;
         }
     }
+    
+    
+    for(i = 0; i< size; i++)
+    {
+        if(currentCandidate == array[i])
+        {
+            count++;
+        }
+        else
+        {
+            count--;
+        }
+        if(count == -1) 
+        {
+            currentCandidate = array[i];
+            count = 1;
+        }
+    }    
 
     //The second phase check if the candidate actually repeats more than half the times
     count = 0;
@@ -104,6 +122,9 @@ bool Tests()
         return false;
     if(getRepeatingElementBoyerMoore(array4, 7, repeatingElement))
         return false;
+
+//    int array4[] = {1,1,2,2};    
+
     
     return true;
 }
