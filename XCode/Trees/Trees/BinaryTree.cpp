@@ -465,6 +465,94 @@ bool BinaryTree::IsBST(Node* root)
         
 }
 
+Node* BinaryTree::FindCommonAncestorBest(Node* root, Node* node1, Node* node2)
+{
+    if(root == NULL)
+        return root;
+    if(root == node1 || root == node2)
+        return root;
+    Node* Left = FindCommonAncestorBest(root->left, node1,node2);
+    Node* Right = FindCommonAncestorBest(root->right, node1,node2);
+    if(Left && Right)
+        return root;
+    return Left? Left : Right;
+
+}
+
+Node* BinaryTree::FindCommonAncestor(Node* root, Node* node1, Node* node2)
+{
+    //This is for Binary tree not binary search tree
+    if(root == NULL)
+        return NULL;
+
+    if(root->val == node1 || root->val == node2)
+        return root;
+
+    map<Node*,bool> visitedHash;
+
+    while(node1)
+    {
+        visitedHash.insert(make_pair(node1, true));
+        node1 = node1->parent;
+    }
+    while(node2)
+    {
+        if(visitedHash.find(node2))
+            return node2;
+        node2 = node2->parent;
+    }
+    return NULL;
+}
+
+Node* BinaryTree::FindCommonAncestorBST(Node* root, Node* node1, Node* node2)
+{
+    //This Binary search tree but O(n) space
+
+    if(root == NULL)
+        return NULL;
+
+    if(root->val == node1->val || root->val == node2->val)
+        return root;
+
+    if(root->val > node1->val && root->val < node2->val)
+        return root;
+
+    if(root->val < node1->val && root->val > node2->val)
+        return root;
+
+    if(root->val > node1->val && root->val > node2->val)
+        FindCommonAncestorBST(root->left , node1, node2);
+
+    if(root->val < node1->val && root->val < node2->val)
+        FindCommonAncestorBST(root->right, node1, node2);
+}
+
+Node* BinaryTree::FindCommonAncestorBSTbetter(Node* root, Node* node1, Node* node2)
+{
+    int h1 = GetTreeHeight(node1);
+    int h2 = GetTreeHeight(node2);
+
+    int diffheight;
+    if(h1 > h2)
+        diffheight = h1 - h2;
+    else
+    {
+        diffheight = h2 - h1;
+        swap(node1, node2);
+    }
+    
+    for(int i =0; i< dh; i++)
+        node1 = node1->parent;
+    while(node2)
+    {
+        if(node1->val == node2->val)
+            return node1;
+        node1 = node1->parent;
+        node2 = node2->parent;
+    }   
+    return NULL;
+}
+
 
 
 

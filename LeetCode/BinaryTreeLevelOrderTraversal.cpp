@@ -29,6 +29,7 @@ return its level order traversal as:
  * };
  */
  
+
 class Solution {
 public:
     vector<vector<int> > levelOrder(TreeNode *root) {
@@ -65,3 +66,5 @@ public:
         return fullQueue;
     }
 };
+
+

@@ -1,32 +1,36 @@
     ListNode *deleteDuplicates(ListNode *head) {
-       
-    
-    ListNode *currentNode = head;
-    if(currentNode == NULL)
-        return head;
-    
-    ListNode* nextNode = currentNode->next;
-    
-    while(nextNode!= NULL)
-    {
-        if(currentNode->val == nextNode->val)
+        // Start typing your C/C++ solution below
+        
+        /*
+// Pointer to traverse the linked list 
+    ListNode*  current = head;
+ 
+  //Pointer to store the next pointer of a node to be deleted
+      ListNode* next_next; 
+   
+  // do nothing if the list is empty 
+     if(current == NULL) 
+     return; 
+ 
+  // Traverse the list till last node 
+    while(current->next != NULL) 
+     {
+   // Compare current node with next node 
+        if(current->data == current->next->data) 
         {
-            //currentNode->next = nextNode->next;
-            ListNode* nodeToDelete = nextNode;
-            nextNode = nextNode->next;
-            currentNode->next = nextNode;
-            delete nodeToDelete;
-        }
-        else
+       //The sequence of steps is important             
+         next_next = current->next->next;
+         free(current->next);
+         current->next = next_next;  
+      }
+        else // This is tricky: only advance if no deletion 
         {
-            currentNode = nextNode;
-            nextNode = nextNode->next;
+        current = current->next; 
         }
-    } 
-     return head;
-    }
+     } 
+  return head;
+    }*/
     
- //Second method
     
     ListNode *currentNode = head;
     

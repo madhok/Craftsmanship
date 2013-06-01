@@ -75,6 +75,10 @@ public:
     bool IsBalanced();
     static void CreateTree(int sortedArray[],int length);
     bool IsBST(Node* root);
+    Node* FindCommonAncestorBest(Node* root,Node* node1, Node* node2);
+    Node* FindCommonAncestor(Node* root,Node* node1, Node* node2);
+    Node* FindCommonAncestorBST(Node* root,Node* node1, Node* node2);
+    Node* FindCommonAncestorBSTbetter(Node* root,Node* node1, Node* node2);
 };
 
 

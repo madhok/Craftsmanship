@@ -87,3 +87,38 @@ public:
         
     }
 };
+
+
+//One more solution
+
+class Solution {
+public:
+    vector<vector<int> > generate(int numRows) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+       vector<vector<int>>pascalTriangle;
+       
+       if(numRows  == 0)
+        return pascalTriangle;
+        vector<int> row; 
+        row.push_back(1);
+        pascalTriangle.push_back(row);
+       for(int rowindex = 1; rowindex < numRows; rowindex++)
+       {
+            row.clear();
+            vector<int> prevRow = pascalTriangle[rowindex-1];
+            int prev = 0;
+            int prevrowindex = 0;    
+            while(prevrowindex < prevRow.size())
+            {
+                row.push_back(prev + prevRow[prevrowindex]);
+                prev = prevRow[prevrowindex];
+                prevrowindex++;
+            }
+            row.push_back(1);
+            pascalTriangle.push_back(row);
+       }
+       return pascalTriangle;
+       
+    }
+};
