@@ -30,6 +30,6 @@ Deadlock:
 	A deadlock is a situation in which two or more competing actions are each waiting for the other to finish, and thus neither ever does.
 
 Race Condition:
-Its a consition where the output of the system depends on sequence/ timing of the input.
+Its a condition where the output of the system depends on sequence/ timing of the input.
 Example:  bank account - shared account - 2 people withdraw the money at the same time.
 

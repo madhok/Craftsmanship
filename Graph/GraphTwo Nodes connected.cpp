@@ -4,23 +4,26 @@ bool isConnected(Node* n1 , Node* n2)
 {
 	stack<Node*> Nodes;
 	map<Node*, bool> visitedMap;
-	list<Node*> adjacent;
+	list<Node*> adjacent = NULL;
 	Nodes.push(n1);
 	visitedMap[n1] = true;
-	while(Nodes.isempty())
+	while(!Nodes.isempty())
 	{
 		Node* tmp = Nodes.pop();
-		adjacent[tmp] = tmp->getAdjacentNodes();
+		tmp->getAdjacentNodes(adjacent);
 		list<int>::iterator i;
-		for(i = adjacent[tmp].begin(); i != adjacent[tmp].end; i++)
+		for(i = adjacent.begin(); i != adjacent.end; i++)
 		{
 			if(*i == n2)
 				return true;
-			else if(visitedMap[*i] == false)
+			else
 			{
-				visitedMap[*i] = true;
-				Nodes.push(*i);
-			}
+				if(visited.find(*i) == visited.end())
+				{
+					Nodes.push(*i);
+					visited[*i] = true;
+				}
+			} 
 		}
 	} 
 	return false;

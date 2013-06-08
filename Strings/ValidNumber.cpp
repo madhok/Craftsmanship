@@ -3,7 +3,7 @@
  * Returns true if the input string is a number and false otherwise
  */
  
- //Test: "-"
+ Test: "-"
  
 public boolean isNumber(String toTest)
 {
@@ -62,7 +62,7 @@ public:
      * the method should return true for 4, -1, and 9, but false for 10, 5, and 0
      */
     virtual bool test(int val) = 0;
-}
+};
 
 void TwoSum::store(int input)
 {
