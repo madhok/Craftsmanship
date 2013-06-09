@@ -1,3 +1,46 @@
+//WOrks for larger numbers
+
+
+class Solution {
+public:
+    double pow(double x, int n) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        if(n == 0)
+            return 1;
+        if(x == 0 || x == 1 || n == 1)
+            return x;
+        bool inverse = false;
+        if(n < 0)
+        {
+            inverse = true;
+            n = -1 * n;
+        }
+            
+            
+        double temp = x;
+        double result = 1.0;
+        for(int i = n; i >0; i =i/2)
+        {
+            if(i%2 == 1)
+                result = result * temp;
+            temp = temp * temp;    
+        }
+        if(inverse)
+            return 1.0/result;
+        return result;
+    }
+};
+
+
+
+
+//Does not work for large numbers
+
+
+
+
+
 class Solution {
 public:
 

@@ -1,3 +1,80 @@
+class Solution {
+public:
+    bool isNumber(const char *s) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        if(strlen(s) == 0)
+            return false;
+        int index = 0;
+        bool numFound = false;
+        while(s[index] == ' ')
+            index++;
+        
+        int last = strlen(s) -1;
+        
+        if(s[index] == '-' || s[index] == '+')
+            index++;
+        
+        bool exp = false;
+        bool dec = false;
+        bool tofind = false;
+        while(s[index] != '\0')
+        {
+            if(s[index] == 'e' && exp ==  true)
+                return false;
+             if(s[index] == 'e' && numFound == true)
+             {
+                 exp = true;
+                 index++;
+                 tofind = true;
+                 continue;
+             }
+             if(!dec && s[index] == '.')
+            {
+                if(exp)
+                    return false;
+                
+                index++;
+                dec = true;
+                continue;
+            }
+            
+            if(s[index] == ' ')
+            {
+               
+               while(s[index] == ' ')
+                {
+                    index++;
+                }
+                if(s[index] == '\0')
+                    return true;
+                else
+                    return false;
+            }
+            if(s[index -1] == 'e' && (s[index] == '+' || s[index] == '-'))
+            {
+                index++;
+                continue;
+            }
+                
+             if(s[index] < '0' || s[index] > '9')
+                return false;
+            numFound = true;
+            if(exp == true)
+                tofind = false;
+            index++;
+        }
+        if(!numFound || tofind)
+            return false;    
+        return true;    
+        
+    }
+};
+
+
+
+
+
 
 /*
  * Returns true if the input string is a number and false otherwise

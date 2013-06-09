@@ -1,4 +1,5 @@
-//Given an int array with no duplicate numbers, write a function to return number of ways to calculate a target number. 
+//Given an int array with no duplicate numbers, 
+//write a function to return number of ways to calculate a target number. 
 
 #include <iostream>
 #include <map>
