@@ -84,7 +84,6 @@ public:
             currentRow++;
         }
         return pascalTriangle;
-        
     }
 };
 
@@ -119,6 +118,5 @@ public:
             pascalTriangle.push_back(row);
        }
        return pascalTriangle;
-       
     }
 };

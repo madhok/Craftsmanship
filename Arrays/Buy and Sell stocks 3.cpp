@@ -35,7 +35,7 @@ public:
         for(int i = prices.size() -1; i >= 0; i--)
         {
             profitOnFuture = max(profitOnFuture, prices[i]);
-            if(i <  prices.size() -1)
+            if(i < prices.size() -1)
                 futureProfits[i] = max(futureProfits[i+1], profitOnFuture - prices[i]);
             
             maxProfit = max(maxProfit, historyProfits[i] + futureProfits[i]);

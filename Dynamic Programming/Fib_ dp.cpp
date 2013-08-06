@@ -14,8 +14,9 @@ f[1] = 1;
 
 for(int i = 2; i < n; i++)
 {
+    int temp = f[0];
     f[0] = f[1];
-    f[1] = f[0] + f[1];
+    f[1] = temp + f[1];
 }
 
 return f[0] + f[1];

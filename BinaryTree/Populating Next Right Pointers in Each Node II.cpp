@@ -8,6 +8,53 @@
  *  TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
  * };
  */
+ 
+ //best
+ class Solution 
+{
+public:
+    void connect(TreeLinkNode *root)
+    {
+        connect1(root);
+    }
+
+    void connect1(TreeLinkNode *curNode)
+    {
+        if (!curNode) return;
+        TreeLinkNode* nextHead = NULL;
+        while (curNode)
+        {
+            if(curNode->left)
+            {
+                curNode->left->next = getNextSibling(curNode, true);
+                if (!nextHead) nextHead = curNode->left;
+            }
+            if (curNode->right)
+            {
+                curNode->right->next = getNextSibling(curNode, false);
+                if (!nextHead) nextHead = curNode->right;
+            }
+            curNode = curNode->next;
+        }
+        connect1(nextHead);
+    }
+
+    TreeLinkNode* getNextSibling(TreeLinkNode *curNode, bool isLeft)
+    {
+        if (isLeft)
+            if (curNode->right) return curNode->right;
+        while ((curNode = curNode->next))
+        {
+            if (curNode->left) return curNode->left;
+            if (curNode->right) return curNode->right;
+        }
+        return NULL;
+    }
+};
+ 
+//bad 
+ 
+ 
 class Solution {
 public:
     void connect(TreeLinkNode *root) {

@@ -60,7 +60,7 @@ int BinaryTree::GetMinHeightTree(Node* CurrentNode)
     {
         return 0;
     }
-    return 1 + min(GetTreeHeight(root->left),GetTreeHeight(root->right));
+    return 1 + min(GetMinHeightTree(root->left),GetMinHeightTree(root->right));
 }
 
 bool BinaryTree::IsEmpty()
@@ -230,38 +230,24 @@ bool BinaryTree::DeleteBSTNode(int val)
     currentNode = NULL;
 }
 
-void BinaryTree::InOrderTraverseIterative()
+void in_order_traversal_iterative(BinaryTree *root)
 {
-    stack<Node*> InOrderStack;
-    Node* currentNode = root;
-    if(currentNode == NULL)
-    {
-        cout << "Empty binary tree" << endl;
-        return;
+  stack<BinaryTree*> s;
+  BinaryTree *current = root;
+  while (!s.empty() || current) 
+  {
+    if (current) {
+      s.push(current);
+      current = current->left;
+    } else {
+      current = s.top();
+      s.pop();
+      cout << current->data << " ";
+      current = current->right;
     }
-    while(currentNode->left!=NULL)
-    {
-        InOrderStack.push(currentNode);
-        currentNode = currentNode->left;
-    }   
-    
-    while(!InOrderStack.empty())
-    {
-        currentNode= InOrderStack.top();
-        InOrderStack.pop();
-        cout << currentNode->data << endl;
-        while(currentNode->right)
-        {
-            InOrderStack.push(currentNode);
-            currentNode= currentNode->right;
-            while(currentNode->left)
-            {
-                InOrderStack.push(currentNode);
-                currentNode= currentNode->left;
-            }
-        }
-    }
+  }
 }
+
 
 void BinaryTree::PreOrderTraverseIterative()
 {
@@ -318,6 +304,51 @@ void BinaryTree::PostOrderTraverseIterative()
         }
     }
 }
+
+void BinaryTree::NonrecursivePostorder()
+{
+    BinaryTreeNode *current = root;
+    stack<pair<BinaryTreeNode*, int>> stack;
+    int traversingLeftOrRight = 0;//0 for root, 1 for left, 2 for right
+    pair<BinaryTreeNode*, int> stackItem;
+    
+    if(current == NULL)
+    {
+        cout << "the tree is empty" <<endl;
+        return;
+    }
+    else
+    {
+        stack.push(make_pair(current, 1));
+        current = current->left;
+        while(!stack.empty())
+        {
+            if(current != NULL && traversingLeftOrRight == 0)
+            {
+                stack.push(make_pair(current, 1));
+                current = current->left;
+            }
+            else
+            {
+                stackItem = stack.top();
+                stack.pop();
+                current = stackItem.first;
+                traversingLeftOrRight = stackItem.second;
+                if(traversingLeftOrRight == 1)
+                {
+                    stack.push(make_pair(current, 2));
+                    current = current->right;
+                    traversingLeftOrRight = 0;
+                }
+                else    
+                {
+                    cout << current->data;
+                }               
+            }
+        }        
+    }    
+}
+
 
 void BinaryTree::BreadthFirstTraversal()
 {    
@@ -385,24 +416,6 @@ bool BinaryTree::IsBalanced()
     //return checkBalance(root); -- MyLogic
 }
 
-//MyLogic
-bool BinaryTree::checkBalance(Node* currentNode)
-{
-    if(currentNode!=NULL)
-    {
-        if(abs(GetTreeHeight(currentNode->left) - GetTreeHeight(currentNode->right)) > 1)
-            return false;
-        else
-        {
-            if(!checkBalance(currentNode->left) || !checkBalance(currentNode->right))
-            {
-                return false;
-            }           
-        }
-    }
-    return true;
-}
-
 int BinaryTree::maxdepth(Node* currentNode)
 {
     if(currentNode == NULL)
@@ -450,19 +463,8 @@ int BinaryTree::getMedian(int sortedArray[], int length)
 
 bool BinaryTree::IsBST(Node* root)
 {
-    if(root == NULL)
-        return true;
-    
-    if(root->left == NULL && root->right == NULLL)
-        return true;
-    
-    if(root->left !=NULL && root->left->val >= root->val)
-        return false;
-    if(root->right !=NULL && root->right->val <= root->val)
-        return false;
-    
-    return (IsBST(root->left) && IsBST(root->right));
-        
+    //do it as inorder traversal.. 
+    //OR  check ValidateBST.cpp
 }
 
 Node* BinaryTree::FindCommonAncestorBest(Node* root, Node* node1, Node* node2)

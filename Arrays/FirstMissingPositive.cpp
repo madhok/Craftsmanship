@@ -6,9 +6,9 @@ Given [1,2,0] return 3,
 and [3,4,-1,1] return 2.
 
 Your algorithm should run in O(n) time and uses constant space.
-  
+  Using Map
   */
-  
+  //Uses O(2n) space
   
    int firstMissingPositive(int A[], int n) {
         // Start typing your C/C++ solution below
