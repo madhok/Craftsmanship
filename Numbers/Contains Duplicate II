@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool containsNearbyDuplicate(vector<int>& nums, int k) {
+        std::map<int,int> mymap;
+        int index = 0;
+        for(std::vector<int>::iterator it = nums.begin(); it != nums.end(); ++it, ++index) {
+            if(mymap.find(*it) != mymap.end()) {
+                //found
+                if((index - mymap.find(*it)->second) <= k) 
+                    return true;
+                mymap[*it] = index;
+            }
+            else {
+                mymap[*it] = index;
+            }
+        }
+        return false;
+    }
+};
