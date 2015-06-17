@@ -1,0 +1,30 @@
+class Solution {
+public:
+    bool isHappy(int n) {
+        int sum = 0;
+        int digit;
+
+        // Return true since it's 1
+        if(n == 1)
+          return true;
+
+      // Loop through each digit and add the square of it to the sum.
+      // Then drop that digit off n until we have done all the digits.
+      do
+      {
+        digit = n % 10;
+        sum += (digit * digit);
+        n /= 10;
+      }while(n > 0);
+
+      // If the sum is 1, we're done and it's happy.
+      // If the sum is > 9, then we need to recurse since it's multiple digits.
+      // If the sum is < 10 and not 1, it's not happy.
+      if(sum == 1 || sum == 7)
+        return true;
+      else if(sum > 9)
+        return isHappy(sum);
+      else
+        return false;
+    }
+};
