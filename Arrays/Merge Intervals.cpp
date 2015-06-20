@@ -28,7 +28,8 @@ public:
         vector<Interval> result;
         int size = intervals.size();
         
-        sort(intervals.begin(), intervals.end(), myobject);
+        //sort(intervals.begin(), intervals.end(), myobject);
+        std::sort(intervals.begin(), intervals.end(),func);
         result.push_back(intervals[0]);
         for(int i = 1; i < size; i++)
         {
@@ -46,10 +47,13 @@ public:
         }
         return result;    
 }
-
+static bool func(Interval a, Interval b) {
+        return (a.start < b.start);
+    }  
+    
 struct myclass {
   bool operator() (Interval i,Interval j) { return (i.start<j.start);}
 } myobject;
     
-    
+  
 };
