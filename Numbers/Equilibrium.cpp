@@ -47,6 +47,7 @@ Elements of input arrays can be modified.
 */
 int solution(vector<int> &A) {
     // write your code in C++11
+    if(A.size() == 0) return 0;
     double sum = 0;
     for(int i = 0; i < A.size(); i++) {
         sum += A[i];
