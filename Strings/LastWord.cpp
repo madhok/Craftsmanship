@@ -12,7 +12,7 @@ int getlength(string line)
 		return 0;
 	}
 	int runIndex = line.length()-1;
-	while(line[runIndex] == ' ')
+	while(runIndex >=0 && line[runIndex] == ' ')
 	{
 		runIndex--;
 	}
