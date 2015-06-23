@@ -14,35 +14,30 @@ Did you notice that the reversed integer might overflow? Assume the input is a 3
 Throw an exception? Good, but what if throwing an exception is not an option? You would then have to re-design the function (ie, add an extra parameter).
 
 */
-
 class Solution {
 public:
     int reverse(int x) {
-        // Start typing your C/C++ solution below
-        // DO NOT write int main() function
-        stack<int> mystack;
-        bool neg = false;
-        if(x < 0)
-        {
-            neg = true;
-            x = abs(x);
+        bool isneg = false;
+        int val = x;
+        if(x == INT_MIN) return 0;
+        if(x < 0) {
+            isneg = true;
+            val = x * -1;
         }
-        while(x > 0)
-        {
-            mystack.push(x%10);
-            x = x/10;
+        if(val < 10) return x;
+        double retval = 0;
+        while(val > 0) {
+            int temp = val%10;
+            retval = retval*10 + temp;
+            val = val/10;
         }
         
-        int result = 0;
-        int multiplier = 1;
-        while(mystack.empty() == false)
-        {
-            result = result + mystack.top() * multiplier;
-            multiplier = multiplier * 10;
-            mystack.pop();
+        if(retval >= INT_MAX) {
+            return 0;
         }
-        if(neg)
-            result = result * -1;
-        return result;
+        if(isneg) {
+            retval = retval * -1;
+        }
+        return retval;
     }
 };
