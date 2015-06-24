@@ -4,7 +4,48 @@ You are given two linked lists representing two non-negative numbers. The digits
 Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 Output: 7 -> 0 -> 8
 
-
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        if(l1 == NULL) return l2;
+        if(l2 == NULL) return l1;
+        
+        ListNode* newlist = new ListNode(0);
+        ListNode* p1 = l1;
+        ListNode* p2 = l2;
+        ListNode* p3 = newlist;
+        int carry = 0;
+        while(p1 != NULL || p2 != NULL){
+            if(p1 != NULL) {
+                carry += p1->val;
+                p1 = p1->next;
+            }
+            if(p2 != NULL) {
+                carry += p2->val;
+                p2 = p2->next;
+            }
+        
+            int val = carry%10;
+            p3->next = new ListNode(val);
+            p3 = p3->next;
+            carry = carry/10;
+        }
+        if(carry != 0) {
+            p3->next = new ListNode(carry);
+            p3 = p3->next;
+        }
+        return newlist->next;
+    }
+};
+// Too much lines of code but works
 */
 
 /**
