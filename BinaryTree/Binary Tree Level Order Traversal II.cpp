@@ -46,8 +46,6 @@ public:
         if(root == NULL)
             return result;
         
-        TreeNode* currentLevel = root;
-        
         queue<TreeNode*> Nodes;
         Nodes.push(root);
         
