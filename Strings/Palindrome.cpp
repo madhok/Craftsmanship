@@ -9,6 +9,49 @@ Have you consider that the string might be empty? This is a good question to ask
 
 For the purpose of this problem, we define empty string as valid palindrome.
 */
+
+
+
+class Solution {
+public:
+    bool isalpha(char c) {
+        if(c >= 'A' && c <='Z') return true;
+        if(c >= 'a' && c <='z') return true;
+        if(c >= '0' && c <= '9') return true;
+        return false;
+    }
+    char tolower(char c) {
+       if(c >= 'A' && c <='Z') 
+            return c -('Z' -'z');
+       return c;
+    }
+    bool isPalindrome(string s) {
+        if(s.length() <2) {
+            return true;
+        }
+        int start = 0;
+        int end = s.length()-1;
+        while(start<=end) {
+            if(isalpha(s[start]) == false) {
+                start++;
+                continue;
+            }
+            if(isalpha(s[end]) == false) {
+                end--;
+                continue;
+            }
+            if(tolower(s[start]) == tolower(s[end])) {
+                start++;
+                end --;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+//Another solution
 #include <iostream>
 
 using namespace std;
