@@ -1,0 +1,43 @@
+It depends on how far you want to go, but this is not a trivial task. I've done it a few times, and I still forget some things.
+
+Think about what a malloc has to do:
+1) Allocate a chunk of memory big enough to satisfy the request, and return a pointer to it.
+2) Remember which chunks of ram are in use and which aren't.
+3) Combine free chunks to make bigger ones.
+
+So, the first thing you need is a big chunk of memory to allocate. The only way you are going to get it is to malloc it off the heap: generally speaking, stacks are far too small for this kind of thing. (In VS, the stack is only 1MB by default, but I've known C based systems with a 1K stack!) This is probably allowable in your homework as you have to get your memory from somewhere!
+
+Now, you need a couple of linked lists.
+1) You need a "free memory" list: Start of block, and size of block.
+2) You need an "in use" list: Start of block, and size of block.
+
+Next, you need to decide what algorithm you will use for allocation:
+1) First fit: The first chunk in the free list that fits your request has a lump chopped off it, and returned as the new memory block
+2) Best Fit: The smallest such chunk that will hold the request.
+3) Worst Fit: The biggest chunk is always used.
+4) Fixed size allocation: All chunks are the same size. (Works well in embedded applications since it doesn't fragment)
+There are others! Wiki will probably help there.
+
+Now you are ready to go:
+Malloc:
+1) Find the chunk to use: If none: error!
+2) Remove chunk from free memory list.
+3) Break chunk into two: request chunk, and free chunk.
+4) Add the Free chunk to the free memory list
+5) Add the request chunk to the in use list
+6) Return the chunk pointer
+
+You also need a Free:
+1) Find the request chunk pointer in the in use list. If it isn't there, error!
+2) Remove it from the in use list.
+3) Add it to the free memory list.
+4) If you aren't using a fixed size allocation, trawl through the free memory list and combine chunks into bigger chunks where they are contiguous.
+
+Sound simple?
+
+Not too bad in fact, but it is best to take it in easy stages, because it can be a bugger to debug.
+Bear in mind, that you need to have somewhere to store your linked lists... That can cause it's own problems, as you may have to malloc space for the lists and they could grow, causing you to have to malloc a bigger space and copy them...
+
+Loads of potential pitfalls!
+
+I would read up on everything I could find first!
