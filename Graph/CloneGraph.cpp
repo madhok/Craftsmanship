@@ -40,3 +40,36 @@ Node* clonegraph(Node* gNode)
 	return ret;
 
 }
+
+/**
+ * Definition for undirected graph.
+ * struct UndirectedGraphNode {
+ *     int label;
+ *     vector<UndirectedGraphNode *> neighbors;
+ *     UndirectedGraphNode(int x) : label(x) {};
+ * };
+ */
+class Solution {
+public:
+    UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {
+        if(node == NULL) return NULL;
+        map<int,UndirectedGraphNode*> visited;
+        return dfs(node,visited);
+    }
+    
+    UndirectedGraphNode* dfs(UndirectedGraphNode* node, map<int, UndirectedGraphNode*>& visited) {
+        UndirectedGraphNode* res = new UndirectedGraphNode(node->label);
+        visited[node->label]  = res;
+        for(int i = 0; i < node->neighbors.size(); ++i) {
+            if(visited.find(node->neighbors[i]->label) == visited.end()) {
+                res->neighbors.push_back(dfs(node->neighbors[i],visited));    
+            }
+            else  {
+                res->neighbors.push_back(visited[node->neighbors[i]->label]);
+            }
+        }
+        return res;
+       
+    }
+};
+
