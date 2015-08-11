@@ -35,37 +35,28 @@ int findElement(vector<int> rotatedArray,int element, int startIndex, int endInd
     else
     {
         int midIndex = startIndex + (endIndex - startIndex)/2;
+        if(element == rotatedArray[midIndex]) {
+            cout << "Element found at Index " << midIndex << endl; 
+        }
         
         if(rotatedArray[startIndex] < rotatedArray[endIndex])
         {
-            if(element >= rotatedArray[midIndex])
-            {
-                startIndex = midIndex;
-            }
-            else
+            if(element > rotatedArray[midIndex])
             {
                 endIndex = midIndex;
             }
-        }
-        else
-        {
-            if(element >= rotatedArray[midIndex])
+            else
             {
                 startIndex = midIndex;
             }
-            else
-            {
-                endIndex = midIndex;
-            }
-        }
-      findElement(rotatedArray,element, startIndex+1, endIndex);  
+        }       
+      findElement(rotatedArray,element, startIndex+1, endIndex-1);  
     }
 }
 
 int main()
 {
     vector<int>array;
-    array.push_back(8);
     array.push_back(1);
     array.push_back(2);
     array.push_back(3);
@@ -73,5 +64,7 @@ int main()
     array.push_back(5);
     array.push_back(6);
     array.push_back(7);
+    array.push_back(8);
+    
     findElement(array, 1, 0, array.size()-1);
 }
