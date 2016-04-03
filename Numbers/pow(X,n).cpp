@@ -1,4 +1,4 @@
-//WOrks for larger numbers
+//Works for larger numbers
 
 
 class Solution {
