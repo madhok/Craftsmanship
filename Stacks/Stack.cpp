@@ -8,6 +8,26 @@
 
 #include "Stack.h"
 
+void Stack_linklist::push(int val) {
+    Node* temp = new Node(val);
+    Node* lastNode = curr->next;
+    curr->next = temp;
+    temp->next = lastNode;
+}
+
+int Stack_linklist::pop() {
+    Node* next = cur->next;
+    if(next== NULL) {
+        cout << "Stack Empty" <<endl;
+        return;
+    }
+    Node* new_top = next->next;
+    cur->next = new_top;
+    int ret_val = next->val;
+    delete next;
+    return ret_val;
+}
+
 void Stack::push(int a)
 {
     if (top >= STACK_MAX)

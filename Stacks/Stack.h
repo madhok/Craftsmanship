@@ -12,6 +12,24 @@
 #include <iostream>
 #define STACK_MAX 100
 
+struct Node {
+	int val;
+	Node* next;
+	Node(_val):val(_val),next(NULL) {} 
+};
+
+class Stack_linklist {
+private:
+	Node* curr;
+public:
+	Stack_linklist() {
+		curr = new Node(0);
+	}
+	void push(int val);
+	int pop();
+
+};
+
 class Stack
 {
   private :
