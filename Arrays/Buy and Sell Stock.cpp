@@ -9,6 +9,27 @@ design an algorithm to find the maximum profit.
 
 class Solution {
 public:
+    int maxProfit(vector<int>& prices) {
+        vector<int> arr;
+        if(prices.size() == 0) return 0;
+        int min = prices[0];
+        int max_profit = 0;
+        for(int i=1; i<prices.size();++i) {
+            if(prices[i] < min) {
+                min = prices[i];
+            } else {
+                int profit = prices[i] - min;
+                if(profit > max_profit)
+                    max_profit = profit;
+            }
+        }
+        return max_profit;
+    }
+};
+
+
+class Solution {
+public:
     int maxProfit(vector<int> &prices) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
@@ -36,52 +57,3 @@ public:
 
 
 // Different implementation without using extra space
-
-class Solution {
-public:
-    int maxProfit(vector<int> &prices) {
-        // Start typing your C/C++ solution below
-        // DO NOT write int main() function
-        if(prices.size() < 1)
-            return 0;
-        int smallestprice = prices[0];    
-        int smallestIndex = 0;         
-        for(int i = 1; i < prices.size() - 1; i++)
-        {
-            if(smallestprice > prices[i])
-            {
-                smallestprice = prices[i];
-                smallestIndex = i;
-            }
-        }
-        int largestprice = prices[smallestIndex];
-        for(int i = smallestIndex+ 1; i < prices.size(); i++)
-        {
-            largestprice = max(largestprice, prices[i]);
-        }
-        int forwardprofit = largestprice -smallestprice;
-        
-        largestprice = prices[prices.size() - 1];
-        int largestindex = prices.size() -1;
-        for(int i = prices.size() - 1; i > 0; i--)
-        {
-            if(largestprice < prices[i])
-            {
-                largestprice = prices[i];
-                largestindex = i; 
-            }
-        }
-        smallestprice = prices[0];
-        
-        for(int i = 0; i < largestindex; i++)
-        {
-            smallestprice = min(smallestprice, prices[i]);
-        }
-        int backwardprofit = largestprice - smallestprice;
-        
-        int maxprofit = max(forwardprofit, backwardprofit);
-        
-         
-        return maxprofit;
-    }
-};

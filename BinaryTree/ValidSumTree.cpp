@@ -23,6 +23,6 @@ int sum(TreeNode* root) {
 void sumhelper(TreeNode* root, int& sum) {
 	if(root == NULL) return;
 	sum = sum + root->val;
-	sumhelper(root>left,sum);
-	sumhelper(root>right,sum);
+	sumhelper(root->left,sum);
+	sumhelper(root->right,sum);
 }
