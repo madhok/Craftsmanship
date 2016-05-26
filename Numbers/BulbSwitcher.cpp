@@ -17,7 +17,7 @@
   *
   * At last, we figure out the solution is: 
   *    
-  *    Count the number of the squre numbers!! 
+  *    Count the number of the square numbers!! 
   */
   
 class Solution {
