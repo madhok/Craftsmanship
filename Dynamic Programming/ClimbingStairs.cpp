@@ -11,12 +11,10 @@ public:
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
         
-        if(n == 1)
-            return 1;
-        if(n == 2)
-            return 2;
+        if(n <3)
+            return n;
         int n1 = 1;
-        int n2 = 1;
+        int n2 = 2;
         
         for(int i = 3; i <= n; i++)
         {
