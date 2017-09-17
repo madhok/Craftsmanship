@@ -8,21 +8,47 @@ You are given a target value to search. If found in the array return its index, 
 You may assume no duplicate exists in the array.
 
 */
-
 class Solution {
 public:
-    int search(int A[], int n, int target) {
-        // Start typing your C/C++ solution below
-        // DO NOT write int main() function
-        if(n == 0)
-            return -1;
+    int binarysearch(vector<int>& nums, int start, int end, int target) {
+        if(start > end) return -1;
+        int mid = (start+end)/2;
+        if(nums[start] == target) return start;
+        else if(nums[end] == target) return end;
+        else if(nums[mid] == target) {
+            return mid;
+        } else if(nums[mid] > target) {
+            return binarysearch(nums, start+1, mid-1, target);
+        } 
+        return binarysearch(nums, mid+1, end-1, target);
+    }
+    int search(vector<int>& nums, int start, int end, int target) {
+        if(start > end) return -1;
+        int mid = (start +end)/2;
+        if(nums[mid] == target ) return mid;
         
-        for(int i = 0; i < n; i++)
-        {
-            if(A[i] == target)
-                return i;
+        if(target > nums[start] && target < nums[mid] && nums[start] < nums[mid]) {
+            //cout << "first one";
+            return binarysearch(nums, start, mid-1, target);
+        } else if(target < nums[end] && target > nums[mid] && nums[mid] < nums[end]) {
+            //cout << "second one";
+            return binarysearch(nums, mid-1, end, target);
+        } else {
+            //cout << "Not in binary";
+            if(nums[start] == target) {
+                return start;
+            } else if(nums[end] == target) {
+                return end;
+            } else {
+                return search(nums, start+1, end-1, target);
+            }
         }
         return -1;
-        
+    }
+    int search(vector<int>& nums, int target) {
+        if(nums.size() == 0) return -1;
+        int start = 0;
+        int end = nums.size()-1;
+        return search(nums, start, end, target);
     }
 };
